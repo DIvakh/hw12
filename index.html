@@ -8,14 +8,24 @@
   </head>
   <body>
     <script>
-      //===============
+      //=============== Реализация функции ===============
 
-      function bind(func, context, ...rest) {
-        return function (...args) {
-          return func.call(context, ...rest.concat(args));
-        };
-      }
+      const bind =
+        (func, context, ...rest) =>
+        (...args) =>
+          func.call(context, ...rest.concat(args));
 
+      // =============== Проверка функции ===============
+      const sayHi = function (age) {
+        console.log(`Привет, ${this.name} ${this.surname}! Тебе ${age} года?`);
+      };
+      let user = {
+        name: "Елена",
+        surname: "Петрова",
+      };
+
+      bind(sayHi, user, 24)();
+      bind(sayHi, user)(24);
       //===============
     </script>
   </body>
