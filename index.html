@@ -9,29 +9,12 @@
   <body>
     <script>
       function bind(func, context, ...rest) {
-        return function () {
-          return func.apply(context, ...rest);
+        return function (...args) {
+          return func.call(context, ...rest.concat(args));
         };
       }
 
       //===============
-      function sayHi() {
-        console.log(`Привет, ${this.name} ${this.surname}. Тебе ${age} лет?`);
-      }
-
-      let user1 = {
-        name: "Петр",
-        surname: "Семенов",
-        age: 30,
-        sayHi,
-      };
-
-      let user2 = {
-        name: "Елена",
-        surname: "Иванова",
-      };
-
-      console.log(bind(sayHi, user2, 53)());
     </script>
   </body>
 </html>
