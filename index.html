@@ -8,6 +8,8 @@
   </head>
   <body>
     <script>
+      //===============
+
       function bind(func, context, ...rest) {
         return function (...args) {
           return func.call(context, ...rest.concat(args));
